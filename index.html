@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CraftWorld | Minecraft</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #101710;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: #17251a;
+  border-bottom: 2px solid #42e65b;
+}
+.logo { font-size: 23px; font-weight: bold; color: #60f777; }
+nav a { color: white; text-decoration: none; margin-left: 18px; }
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #193d23, #101710);
+}
+.hero h1 { font-size: clamp(36px, 7vw, 65px); margin: 0 0 20px; }
+.hero h1 span { color: #60f777; }
+.hero p { color: #c6d4c8; font-size: 18px; }
+.btn {
+  display: inline-block;
+  background: #48db5c;
+  color: #102014;
+  padding: 14px 24px;
+  margin: 10px 5px;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover { background: #8cff99; transform: translateY(-2px); }
+section { padding: 45px 8%; text-align: center; }
+h2 { color: #60f777; font-size: 30px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  max-width: 950px;
+  margin: 25px auto;
+}
+.card {
+  background: #1c2b20;
+  border: 1px solid #344b38;
+  border-radius: 12px;
+  padding: 25px 18px;
+}
+.card .emoji { font-size: 42px; }
+.card p { color: #c1cec3; line-height: 1.6; }
+.ipbox {
+  background: #1c2b20;
+  border: 1px solid #42db58;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+}
+#serverip { font-size: 20px; overflow-wrap: anywhere; }
+footer {
+  text-align: center;
+  background: #17251a;
+  padding: 25px;
+  color: #a8b9ac;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">⛏ CRAFTWORLD</div>
+  <div>
+    <a href="#hakkinda">Hakkında</a>
+    <a href="#ozellikler">Özellikler</a>
+    <a href="#sunucu">Sunucu</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>KENDİ <span>DÜNYANI</span><br>İNŞA ET!</h1>
+  <p>Macera, savaş ve eğlence burada başlıyor!</p>
+  <a class="btn" href="#sunucu">SUNUCU BİLGİLERİ</a>
+  <a class="btn" href="#ozellikler">KEŞFET</a>
+</header>
+
+<section id="hakkinda">
+  <h2>🌍 Minecraft Dünyasına Hoş Geldin!</h2>
+  <p>Yeni maceralara hazır mısın? Bloklarını topla,
+  yapılar inşa et ve kendi efsaneni oluştur!</p>
+</section>
+
+<section id="ozellikler">
+  <h2>⚔️ ÖZELLİKLER</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">⛏️</div>
+      <h3>Madencilik</h3>
+      <p>Değerli blokları keşfet ve kaynaklarını geliştir.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">⚔️</div>
+      <h3>Savaş</h3>
+      <p>Ekipmanlarını hazırla ve heyecanlı savaşlara katıl.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🏰</div>
+      <h3>Yapılar</h3>
+      <p>Hayalindeki yapıları inşa edip dünyanı güzelleştir.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sunucu">
+  <h2>🎮 SUNUCU BİLGİLERİ</h2>
+  <div class="ipbox">
+    <p>Sunucu IP adresi</p>
+    <div id="serverip">IP-ADRESINI-BURAYA-YAZ</div>
+    <button class="btn" onclick="copyIP()">📋 IP'Yİ KOPYALA</button>
+    <p id="message"></p>
+  </div>
+  <p>Sunucu adresini yukarıdaki örnek metin yerine yazabilirsin.</p>
+</section>
+
+<footer>
+  <p>⛏ CRAFTWORLD</p>
+  <p>© 2026 Minecraft Fan Sitesi</p>
+  <p>Bu site bağımsız bir hayran sitesidir; Mojang veya Microsoft'un resmî sitesi değildir.</p>
+</footer>
+
+<script>
+function copyIP() {
+  const ip = document.getElementById("serverip").textContent.trim();
+  if (ip === "IP-ADRESINI-BURAYA-YAZ") {
+    document.getElementById("message").textContent =
+      "Önce kendi sunucu IP adresini ekle!";
+    return;
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(ip).then(() => {
+      document.getElementById("message").textContent = "IP kopyalandı!";
+    }).catch(() => {
+      document.getElementById("message").textContent =
+        "IP adresini seçip elle kopyalayabilirsin: " + ip;
+    });
+  } else {
+    document.getElementById("message").textContent =
+      "Sunucu IP adresin: " + ip;
+  }
+}
+</script>
+
+</body>
+</html>
