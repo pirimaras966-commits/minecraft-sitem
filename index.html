@@ -1,164 +1,231 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CraftWorld | Minecraft</title>
-<style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: #101710;
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8%;
-  background: #17251a;
-  border-bottom: 2px solid #42e65b;
-}
-.logo { font-size: 23px; font-weight: bold; color: #60f777; }
-nav a { color: white; text-decoration: none; margin-left: 18px; }
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #193d23, #101710);
-}
-.hero h1 { font-size: clamp(36px, 7vw, 65px); margin: 0 0 20px; }
-.hero h1 span { color: #60f777; }
-.hero p { color: #c6d4c8; font-size: 18px; }
-.btn {
-  display: inline-block;
-  background: #48db5c;
-  color: #102014;
-  padding: 14px 24px;
-  margin: 10px 5px;
-  border: none;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-.btn:hover { background: #8cff99; transform: translateY(-2px); }
-section { padding: 45px 8%; text-align: center; }
-h2 { color: #60f777; font-size: 30px; }
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 18px;
-  max-width: 950px;
-  margin: 25px auto;
-}
-.card {
-  background: #1c2b20;
-  border: 1px solid #344b38;
-  border-radius: 12px;
-  padding: 25px 18px;
-}
-.card .emoji { font-size: 42px; }
-.card p { color: #c1cec3; line-height: 1.6; }
-.ipbox {
-  background: #1c2b20;
-  border: 1px solid #42db58;
-  border-radius: 12px;
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 25px;
-}
-#serverip { font-size: 20px; overflow-wrap: anywhere; }
-footer {
-  text-align: center;
-  background: #17251a;
-  padding: 25px;
-  color: #a8b9ac;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110b">
+  <title>CraftWorld | Minecraft Sunucusu</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07110b;
+      color: #f2fff4;
+    }
+    a { color: inherit; text-decoration: none; }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 7%;
+      background: #0b1910;
+      border-bottom: 1px solid #1d3a25;
+    }
+    .logo { font-size: 23px; font-weight: 900; }
+    .logo span { color: #57f287; }
+    nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    nav a { color: #c5d8c8; font-size: 14px; }
+    nav a:hover { color: #57f287; }
+    .hero {
+      min-height: 440px;
+      padding: 90px 20px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at center, #174426 0%, #0b1b10 45%, #07110b 78%);
+    }
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #326d43;
+      border-radius: 30px;
+      color: #8effa8;
+      font-size: 13px;
+    }
+    h1 {
+      font-size: clamp(38px, 7vw, 70px);
+      margin: 24px 0 15px;
+      letter-spacing: -2px;
+    }
+    h1 span { color: #57f287; }
+    .hero p {
+      max-width: 580px;
+      margin: 0 auto;
+      color: #bdcfbf;
+      line-height: 1.8;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn {
+      border: 1px solid #31553a;
+      padding: 14px 22px;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-main {
+      color: #061009;
+      background: #57f287;
+      border-color: #57f287;
+    }
+    .btn-main:hover { background: #85ffa7; }
+    .btn-dark { background: #132319; color: white; }
+    section { padding: 65px 7%; }
+    .section-title { text-align: center; margin-bottom: 35px; }
+    .section-title h2 { font-size: 32px; margin-bottom: 10px; }
+    .section-title p { color: #9db4a2; }
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .game {
+      padding: 26px;
+      background: linear-gradient(145deg, #12251a, #0b1710);
+      border: 1px solid #25452e;
+      border-radius: 15px;
+      transition: transform .2s, border-color .2s;
+    }
+    .game:hover {
+      transform: translateY(-5px);
+      border-color: #57f287;
+    }
+    .game-icon { font-size: 35px; }
+    .game h3 { font-size: 22px; margin-bottom: 10px; }
+    .game p { color: #a8bcae; line-height: 1.7; min-height: 48px; }
+    .game small { color: #57f287; }
+    .ip-box {
+      max-width: 650px;
+      margin: auto;
+      padding: 30px 20px;
+      text-align: center;
+      background: #102016;
+      border: 1px solid #2d5738;
+      border-radius: 16px;
+    }
+    .ip {
+      overflow-wrap: anywhere;
+      margin: 20px 0;
+      color: #70ff96;
+      font-size: clamp(17px, 4vw, 25px);
+      font-weight: bold;
+    }
+    footer {
+      padding: 25px 15px;
+      text-align: center;
+      color: #91a797;
+      background: #09130c;
+      border-top: 1px solid #1d3524;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .navbar { flex-direction: column; }
+      nav { justify-content: center; gap: 15px; }
+      .hero { padding: 65px 18px; }
+      section { padding: 48px 6%; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">⛏ CRAFTWRLD</div>
-  <div>
-    <a href="#hakkinda">Hakkında</a>
-    <a href="#ozellikler">Özellikler</a>
-    <a href="#sunucu">Sunucu</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <h1>KENDİ <span>DÜNYANI</span><br>İNŞA ET!</h1>
-  <p>Macera, savaş ve eğlence burada başlıyor!</p>
-  <a class="btn" href="#sunucu">SUNUCU BİLGİLERİ</a>
-  <a class="btn" href="#ozellikler">KEŞFET</a>
+<header class="navbar">
+  <a class="logo" href="#">CRAFT<span>WORLD</span></a>
+  <nav>
+    <a href="#anasayfa">Ana Sayfa</a>
+    <a href="#modlar">Oyun Modları</a>
+    <a href="#sunucu">Sunucu IP</a>
+  </nav>
 </header>
 
-<section id="hakkinda">
-  <h2>🌍 Minecraft Dünyasına Hoş Geldin!</h2>
-  <p>Yeni maceralara hazır mısın? Bloklarını topla,
-  yapılar inşa et ve kendi efsaneni oluştur!</p>
-</section>
+<main>
+  <section class="hero" id="anasayfa">
+    <div class="tag">⛏ MINECRAFT MACERASI BAŞLIYOR</div>
+    <h1>Kendi Dünyanı<br><span>Keşfet!</span></h1>
+    <p>
+      Arkadaşlarınla oyna, yeni dünyalar keşfet
+      ve Minecraft macerana hemen başla!
+    </p>
+    <div class="buttons">
+      <a class="btn btn-main" href="#sunucu">SUNUCUYA KATIL</a>
+      <a class="btn btn-dark" href="#modlar">MODLARI KEŞFET</a>
+    </div>
+  </section>
 
-<section id="ozellikler">
-  <h2>⚔️ ÖZELLİKLER</h2>
-  <div class="cards">
-    <div class="card">
-      <div class="emoji">⛏️</div>
-      <h3>Madencilik</h3>
-      <p>Değerli blokları keşfet ve kaynaklarını geliştir.</p>
+  <section id="modlar">
+    <div class="section-title">
+      <h2>Oyun Modları</h2>
+      <p>Seni bekleyen maceralara göz at!</p>
     </div>
-    <div class="card">
-      <div class="emoji">⚔️</div>
-      <h3>Savaş</h3>
-      <p>Ekipmanlarını hazırla ve heyecanlı savaşlara katıl.</p>
+    <div class="games">
+      <article class="game">
+        <div class="game-icon">🌲</div>
+        <h3>Survival</h3>
+        <p>Kaynak topla, evini kur ve kendi dünyanı geliştir.</p>
+        <small>MACERAYA HAZIR OL</small>
+      </article>
+      <article class="game">
+        <div class="game-icon">⚔️</div>
+        <h3>BoxPvP</h3>
+        <p>Ekipmanını geliştir ve rekabet dolu arenayı keşfet.</p>
+        <small>GÜCÜNÜ GÖSTER</small>
+      </article>
+      <article class="game">
+        <div class="game-icon">🛏️</div>
+        <h3>BedWars</h3>
+        <p>Takımını kur, yatağını koru ve rakiplerinle yarış.</p>
+        <small>TAKIMINI TOPLA</small>
+      </article>
     </div>
-    <div class="card">
-      <div class="emoji">🏰</div>
-      <h3>Yapılar</h3>
-      <p>Hayalindeki yapıları inşa edip dünyanı güzelleştir.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="sunucu">
-  <h2>🎮 SUNUCU BİLGİLERİ</h2>
-  <div class="ipbox">
-    <p>Sunucu IP adresi</p>
-    <div id="serverip">IP-ADRESINI-BURAYA-YAZ</div>
-    <button class="btn" onclick="copyIP()">📋 IP'Yİ KOPYALA</button>
-    <p id="message"></p>
-  </div>
-  <p>Sunucu adresini yukarıdaki örnek metin yerine yazabilirsin.</p>
-</section>
+  <section id="sunucu">
+    <div class="section-title">
+      <h2>Sunucuya Katıl</h2>
+      <p>Minecraft'ı aç ve maceraya hazırlan!</p>
+    </div>
+    <div class="ip-box">
+      <strong>JAVA SUNUCU ADRESİ</strong>
+      <div class="ip" id="server-ip">IP_ADRESINI_BURAYA_YAZ</div>
+      <button class="btn btn-main" onclick="copyIP()">
+        IP'Yİ KOPYALA
+      </button>
+      <p id="copy-message" aria-live="polite"></p>
+      <small>Sunucu adresini kendi gerçek IP adresinle değiştir.</small>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <p>⛏ CRAFTWORLD</p>
-  <p>© 2026 Minecraft Fan Sitesi</p>
-  <p>Bu site bağımsız bir hayran sitesidir; Mojang veya Microsoft'un resmî sitesi değildir.</p>
+  © 2026 CraftWorld · Minecraft maceran burada başlıyor!
+  <br><br>
+  Bu, bağımsız bir hayran sitesidir; Mojang veya Microsoft ile bağlantılı değildir.
 </footer>
 
 <script>
-function copyIP() {
-  const ip = document.getElementById("serverip").textContent.trim();
-  if (ip === "IP-ADRESINI-BURAYA-YAZ") {
-    document.getElementById("message").textContent =
-      "Önce kendi sunucu IP adresini ekle!";
-    return;
+  async function copyIP() {
+    const ip = document.getElementById("server-ip").textContent.trim();
+    const message = document.getElementById("copy-message");
+
+    if (ip === "IP_ADRESINI_BURAYA_YAZ") {
+      message.textContent = "Önce kendi sunucu IP adresini eklemelisin!";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(ip);
+      message.textContent = "Sunucu IP'si kopyalandı!";
+    } catch (error) {
+      message.textContent = "IP adresi: " + ip;
+    }
   }
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(ip).then(() => {
-      document.getElementById("message").textContent = "IP kopyalandı!";
-    }).catch(() => {
-      document.getElementById("message").textContent =
-        "IP adresini seçip elle kopyalayabilirsin: " + ip;
-    });
-  } else {
-    document.getElementById("message").textContent =
-      "Sunucu IP adresin: " + ip;
-  }
-}
 </script>
 
 </body>
